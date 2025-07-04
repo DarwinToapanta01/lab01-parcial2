@@ -54,3 +54,14 @@ En esta imagen podemos ver la estructura del proyecto:
 <p align="center">
   <img src="imagenes/Estructura.png" alt="Estructura del proyecto" width="600"/>
 </p>
+
+### 💻 Componentes LitElement
+La aplicación ESPE Tasks está construida sobre un conjunto de componentes web modulares y reutilizables, desarrollados con LitElement. Cada componente encapsula su propia lógica, marcado HTML y estilos (incluyendo Tailwind CSS), garantizando una arquitectura limpia y mantenible.
+
+- **🧩 Descripción de Componentes**
+`<espe-app.js>`
+Propósito: Componente raíz de la aplicación.
+Funciones clave:
+✅ Contiene el layout global.
+✅ Orquesta la UI usando espe-header y espe-task-list.
+✅ Inyecta los estilos de Tailwind al Shadow DOM global.
