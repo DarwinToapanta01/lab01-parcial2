@@ -70,3 +70,12 @@ La aplicación **ESPE Tasks** está construida sobre un conjunto de componentes 
 ✅ Inyecta los estilos de Tailwind al Shadow DOM global.  
 
 ---
+#### `espe-header.js`  
+**Propósito:** Barra de navegación superior.  
+**Funciones clave:**  
+✅ Muestra el logo de la aplicación ("ESPE Tasks").  
+✅ Contiene navegación: Inicio, Tareas, Calendario, Notas.  
+✅ Incluye íconos de perfil, notificaciones y avatar.  
+✅ Usa Tailwind CSS para un diseño moderno y responsivo.  
+
+---
