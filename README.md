@@ -1,3 +1,9 @@
+# Laboratorios/Informes: Individual Desarrollar un Sistema de Gestión de Tareas (To-Do List) con LitElement
+
+**Nombre:** DARWIN ANDRES TOAPANTA PAEZ  
+**Docente:** PAULO CESAR GALARZA SANCHEZ 
+**Materia:** PROGRAMACIÓN INTEGRATIVA
+
 # 🚀 ESPE Tasks App
 
 ¡Bienvenido a la aplicación **ESPE Tasks**, un gestor de tareas moderno y responsivo construido con LitElement y Tailwind CSS
@@ -79,3 +85,41 @@ La aplicación **ESPE Tasks** está construida sobre un conjunto de componentes 
 ✅ Usa Tailwind CSS para un diseño moderno y responsivo.  
 
 ---
+#### `espe-task-list.js`  
+**Propósito:** Componente principal para gestionar y visualizar tareas.  
+**Funciones clave:**  
+✅ Muestra la sección "Mis Tareas".  
+✅ Permite filtrar por fecha y prioridad.  
+✅ Agrupa tareas por categorías como Hoy, Mañana, Esta Semana.  
+✅ Renderiza múltiples `espe-task-item`.  
+✅ Gestiona la lógica del estado de las tareas.  
+
+---
+
+#### `espe-task-item.js`  
+**Propósito:** Representa visualmente una sola tarea.  
+**Funciones clave:**  
+✅ Muestra el título, la hora y el estado (completada o no).  
+✅ Incluye botones para editar (✏️) y eliminar (🗑️) la tarea.  
+✅ Se comunica con `espe-task-list` a través de eventos personalizados.  
+✅ Es autónomo y reutilizable.  
+
+---
+
+#### `espe-add-task-modal.js`  
+**Propósito:** Modal interactivo para crear nuevas tareas.  
+**Funciones clave:**  
+✅ Formulario para ingresar título, descripción, fecha, hora y prioridad.  
+✅ Validación de campos obligatorios.  
+✅ Permite guardar la tarea o cancelar la operación.  
+✅ Interfaz clara y amigable para el usuario.  
+
+---
+
+#### `espe-task-detail-modal.js`  
+**Propósito:** Modal de vista detallada y edición de tareas.  
+**Funciones clave:**  
+✅ Muestra todos los datos de una tarea seleccionada.  
+✅ Permite editar los campos directamente.  
+✅ Opciones para guardar cambios o eliminar la tarea.  
+✅ Se activa al hacer clic en una tarea existente.
