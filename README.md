@@ -123,3 +123,39 @@ La aplicación **ESPE Tasks** está construida sobre un conjunto de componentes 
 ✅ Permite editar los campos directamente.  
 ✅ Opciones para guardar cambios o eliminar la tarea.  
 ✅ Se activa al hacer clic en una tarea existente.
+
+---
+### 🏃 Demostración de Ejecución e Interacción
+Aquí te mostramos cómo funciona la aplicación ESPE Tasks desde su inicio hasta las operaciones básicas de gestión de tareas.
+
+1. Inicio de la Aplicación
+Una vez que hayas clonado el repositorio e instalado las dependencias (`npm install`), puedes iniciar el servidor de desarrollo.
+    ```bash
+    npm start
+
+Esto compilará el proyecto y lo abrirá automáticamente en tu navegador. Verás la interfaz principal de la aplicación, con el encabezado, la sección de tareas y el botón para agregar una nueva tarea.
+<p align="center">
+  <img src="/imagenes/Ejecucion.png" alt="Ejecución de la aplicación" width="600"/>
+</p>
+
+2. Agregando una Nueva Tarea
+Para añadir una nueva tarea, haz clic en el botón flotante "+ Agregar Tarea" ubicado en la esquina inferior derecha. Esto abrirá un modal donde podrás ingresar los detalles de la tarea.
+
+Ingresa la información necesaria (Título, Descripción, Fecha, Hora, Prioridad) y haz clic en el botón para guardar la tarea.
+<p align="center">
+  <img src="/imagenes/Nuevatarea.png" alt="Ejecución de la aplicación" width="600"/>
+</p>
+
+3. Actualizando una Tarea Existente
+Puedes editar los detalles de una tarea haciendo clic en el icono de lápiz (`✏️`) junto a la tarea que deseas modificar. Esto abrirá el modal de detalles de la tarea, donde podrás ajustar la información.
+
+Realiza los cambios deseados y luego haz clic en el botón para guardar las modificaciones.
+<p align="center">
+  <img src="/imagenes/Actualizar.png" alt="Ejecución de la aplicación" width="600"/>
+</p>
+
+4. Eliminando una Tarea
+Si necesitas eliminar una tarea, haz clic en el icono de papelera (🗑️) al lado de la tarea correspondiente. La aplicación te pedirá una confirmación (o la eliminará directamente, dependiendo de la implementación actual).
+<p align="center">
+  <img src="/imagenes/Eliminar.png" alt="Ejecución de la aplicación" width="600"/>
+</p>
