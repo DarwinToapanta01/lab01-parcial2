@@ -1,28 +1,34 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import tailwindStyles from '../tailwind.css?inline';
 
-@customElement('espe-task-item')
 export class EspeTaskItem extends LitElement {
-  @property({ type: Object })
-  task = {};
+  static properties = {
+    task: { type: Object }
+  };
 
-  static styles = css`
-    /* Estilos migrados de styles.css para task-item */
+  constructor() {
+    super();
+    this.task = {};
+  }
+
+  static styles = [
+      unsafeCSS(tailwindStyles),
+      css`
     :host { display: block; }
     .task-item {
       cursor: pointer;
       transition: background-color 0.2s;
     }
     .task-item:hover {
-      background-color: var(--color-fondo-claro); /* Usando variable CSS */
+      background-color: var(--color-fondo-claro);
     }
     .text-white { color: var(--color-texto-blanco); }
     .text-\\[\\#8ecdb7\\] { color: var(--color-texto-claro); }
     .bg-\\[\\#10231c\\] { background-color: var(--color-fondo-oscuro); }
     .bg-\\[\\#214a3c\\] { background-color: var(--color-fondo-claro); }
     .hover\\:text-white:hover { color: var(--color-texto-blanco); }
-    .hover\\:text-red-500:hover { color: #ef4444; } /* Rojo para eliminar */
-  `;
+    .hover\\:text-red-500:hover { color: #ef4444; }
+  `];
 
   render() {
     return html`
@@ -89,3 +95,5 @@ export class EspeTaskItem extends LitElement {
     return `${hour12}:${minutes} ${period}`;
   }
 }
+
+customElements.define('espe-task-item', EspeTaskItem);

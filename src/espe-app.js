@@ -1,54 +1,50 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import tailwindStyles from './tailwind.css?inline';
 
-// Importa tus componentes (asegúrate que los archivos son .js)
 import './components/espe-header.js';
 import './components/espe-task-list.js';
 import './components/espe-add-task-modal.js';
 import './components/espe-task-detail-modal.js';
 
-@customElement('espe-app')
 export class EspeApp extends LitElement {
-  @state()
-  tasks = [
-    { id: 1, name: 'Reunión de Proyecto', notes: 'Preparar presentación para la reunión con el equipo.', time: '10:00', priority: 'alta', date: 'hoy' },
-    { id: 2, name: 'Almuerzo con el equipo', notes: 'Discutir avances del proyecto durante el almuerzo.', time: '13:00', priority: 'media', date: 'hoy' },
-    { id: 3, name: 'Presentación de la propuesta', notes: 'Presentar la propuesta final al cliente.', time: '09:00', priority: 'alta', date: 'mañana' },
-    { id: 4, name: 'Revisión de código', notes: 'Revisar el código de la implementación actual.', time: '14:00', priority: 'media', date: 'mañana' }
+  static properties = {
+    tasks: { type: Array },
+    showAddTaskModal: { type: Boolean },
+    showTaskDetailModal: { type: Boolean },
+    selectedTask: { type: Object },
+    isEditing: { type: Boolean },
+    editingTaskId: { type: Number }
+  };
+
+  constructor() {
+    super();
+    this.tasks = [
+      { id: 1, name: 'Reunión de Proyecto', notes: 'Preparar presentación para la reunión con el equipo.', time: '10:00', priority: 'alta', date: 'hoy' },
+      { id: 2, name: 'Almuerzo con el equipo', notes: 'Discutir avances del proyecto durante el almuerzo.', time: '13:00', priority: 'media', date: 'hoy' },
+      { id: 3, name: 'Presentación de la propuesta', notes: 'Presentar la propuesta final al cliente.', time: '09:00', priority: 'alta', date: 'mañana' },
+      { id: 4, name: 'Revisión de código', notes: 'Revisar el código de la implementación actual.', time: '14:00', priority: 'media', date: 'mañana' }
+    ];
+    this.showAddTaskModal = false;
+    this.showTaskDetailModal = false;
+    this.selectedTask = null;
+    this.isEditing = false;
+    this.editingTaskId = null;
+  }
+
+  static styles = [
+    unsafeCSS(tailwindStyles),
+    css`
+      :host {
+        --color-primario: #003C71;
+        --color-secundario: #FFD700;
+        --color-terciario: #019863;
+        --color-fondo-oscuro: #10231c;
+        --color-fondo-claro: #17352b;
+        --color-borde: #2f6a55;
+        --color-texto-claro: #8ecdb7;
+        --color-texto-blanco: #ffffff;
+      }`
   ];
-
-  @state()
-  showAddTaskModal = false;
-
-  @state()
-  showTaskDetailModal = false;
-
-  @state()
-  selectedTask = null; // Vuelve a null, y usaremos ?? null para asignar
-
-  @state()
-  isEditing = false;
-
-  @state()
-  editingTaskId = null;
-
-  static styles = css`
-    /* Definición de variables CSS para el tema institucional de ESPE */
-    :host {
-      --color-primario: #003C71; /* Azul obscuro */
-      --color-secundario: #FFD700; /* Dorado */
-      --color-terciario: #019863; /* Verde de acento */
-      --color-fondo-oscuro: #10231c; /* Fondo principal */
-      --color-fondo-claro: #17352b; /* Fondo de modales/tarjetas */
-      --color-borde: #2f6a55; /* Borde de elementos */
-      --color-texto-claro: #8ecdb7; /* Texto secundario */
-      --color-texto-blanco: #ffffff; /* Texto principal */
-    }
-
-    .layout-container {
-      /* Estilos de layout globales que no son Tailwind */
-    }
-  `;
 
   render() {
     return html`
@@ -159,8 +155,7 @@ export class EspeApp extends LitElement {
 
   _handleTaskSelected(event) {
     const taskId = event.detail;
-    // Usamos el operador ?? null para asegurar que selectedTask sea null si find() devuelve undefined
-    this.selectedTask = this.tasks.find(t => t.id === taskId) ?? null;
+    this.selectedTask = this.tasks.find(t => t.id === taskId) || null; // Usar || null en JS puro
     this.showTaskDetailModal = true;
   }
 
@@ -197,3 +192,5 @@ export class EspeApp extends LitElement {
     this._closeTaskDetailModal();
   }
 }
+
+customElements.define('espe-app', EspeApp);

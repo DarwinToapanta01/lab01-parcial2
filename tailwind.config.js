@@ -2,7 +2,7 @@
 module.exports = {
     content: [
         "./public/**/*.html",
-        "./src/**/*.js", // Asegúrate de que Tailwind escanee tus archivos LitElement
+        "./src/**/*.js",
     ],
     theme: {
         extend: {},

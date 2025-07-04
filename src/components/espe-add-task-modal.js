@@ -1,31 +1,28 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import tailwindStyles from '../tailwind.css?inline';
 
-@customElement('espe-add-task-modal')
 export class EspeAddTaskModal extends LitElement {
-  @property({ type: Boolean })
-  show = false;
+  static properties = {
+    show: { type: Boolean },
+    isEditing: { type: Boolean },
+    editingTask: { type: Object }
+  };
 
-  @property({ type: Boolean })
-  isEditing = false;
+  constructor() {
+    super();
+    this.show = false;
+    this.isEditing = false;
+    this.editingTask = null;
+  }
 
-  @property({ type: Object })
-  editingTask = null;
+  get _taskNameInput() { return this.shadowRoot.querySelector('#task-name'); }
+  get _taskNotesInput() { return this.shadowRoot.querySelector('#task-notes'); }
+  get _taskTimeInput() { return this.shadowRoot.querySelector('#task-time'); }
+  get _taskPrioritySelect() { return this.shadowRoot.querySelector('#task-priority'); }
 
-  @query('#task-name')
-  _taskNameInput;
-
-  @query('#task-notes')
-  _taskNotesInput;
-
-  @query('#task-time')
-  _taskTimeInput;
-
-  @query('#task-priority')
-  _taskPrioritySelect;
-
-  static styles = css`
-    /* Estilos del modal migrados de styles.css */
+  static styles = [
+    unsafeCSS(tailwindStyles),
+    css`
     .modal {
       display: none;
       position: fixed;
@@ -101,7 +98,7 @@ export class EspeAddTaskModal extends LitElement {
     .focus\\:border-none:focus { border: none; }
     .bg-\\[\\#019863\\] { background-color: var(--color-terciario); }
     .text-white { color: var(--color-texto-blanco); }
-  `;
+  `];
 
   render() {
     return html`
@@ -205,3 +202,5 @@ export class EspeAddTaskModal extends LitElement {
     this._taskPrioritySelect.value = 'media';
   }
 }
+
+customElements.define('espe-add-task-modal', EspeAddTaskModal);

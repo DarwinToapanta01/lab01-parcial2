@@ -1,16 +1,21 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import tailwindStyles from '../tailwind.css?inline';
 
-@customElement('espe-task-detail-modal')
 export class EspeTaskDetailModal extends LitElement {
-  @property({ type: Boolean })
-  show = false;
+  static properties = {
+    show: { type: Boolean },
+    task: { type: Object }
+  };
 
-  @property({ type: Object })
-  task = null;
+  constructor() {
+    super();
+    this.show = false;
+    this.task = null;
+  }
 
-  static styles = css`
-    /* Estilos del modal migrados de styles.css */
+  static styles = [
+      unsafeCSS(tailwindStyles),
+      css`
     .modal {
       display: none;
       position: fixed;
@@ -72,14 +77,13 @@ export class EspeTaskDetailModal extends LitElement {
       to { transform: translateY(0); opacity: 1; }
     }
 
-    /* Estilos de texto y colores */
     .text-white { color: var(--color-texto-blanco); }
     .text-\\[\\#8ecdb7\\] { color: var(--color-texto-claro); }
     .bg-\\[\\#10231c\\] { background-color: var(--color-fondo-oscuro); }
     .bg-\\[\\#214a3c\\] { background-color: var(--color-fondo-claro); }
     .border-\\[\\#2f6a55\\] { border-color: var(--color-borde); }
     .bg-\\[\\#019863\\] { background-color: var(--color-terciario); }
-  `;
+  `];
 
   render() {
     if (!this.task) {
@@ -185,3 +189,5 @@ export class EspeTaskDetailModal extends LitElement {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 }
+
+customElements.define('espe-task-detail-modal', EspeTaskDetailModal);

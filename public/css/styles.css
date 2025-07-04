@@ -1,4 +1,3 @@
-/* Base para Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -87,7 +86,6 @@
     background-color: #17352b;
 }
 
-/* Hide/Show utility */
 .hidden {
     display: none !important;
 }

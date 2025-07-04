@@ -1,16 +1,22 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
-import './espe-task-item.js'; // Importa .js
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import './espe-task-item.js';
+import tailwindStyles from '../tailwind.css?inline';
 
-@customElement('espe-task-list')
 export class EspeTaskList extends LitElement {
-  @property({ type: Array })
-  tasks = [];
+  static properties = {
+    tasks: { type: Array }
+  };
 
-  static styles = css`
-    /* Estilos específicos para la lista de tareas */
+  constructor() {
+    super();
+    this.tasks = [];
+  }
+
+  static styles = [
+    unsafeCSS(tailwindStyles),
+    css`
     :host { display: block; }
-  `;
+  `];
 
   render() {
     const groupedTasks = this.tasks.reduce((acc, task) => {
@@ -47,7 +53,7 @@ export class EspeTaskList extends LitElement {
       return;
     }
     this.dispatchEvent(new CustomEvent('task-selected', {
-      detail: event.detail, // Asegúrate que el detail se propague correctamente
+      detail: event.detail,
       bubbles: true,
       composed: true
     }));
@@ -71,3 +77,5 @@ export class EspeTaskList extends LitElement {
     }));
   }
 }
+
+customElements.define('espe-task-list', EspeTaskList);

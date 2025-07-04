@@ -1,12 +1,19 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { LitElement, html, css, unsafeCSS } from 'lit';
+import tailwindStyles from '../tailwind.css?inline';
 
-@customElement('espe-header')
 export class EspeHeader extends LitElement {
-  @state()
-  _isMobileMenuOpen = false;
+  static properties = {
+    _isMobileMenuOpen: { type: Boolean }
+  };
 
-  static styles = css`
+  constructor() {
+    super();
+    this._isMobileMenuOpen = false;
+  }
+
+  static styles = [
+    unsafeCSS(tailwindStyles),
+    css`
     /* Estilos del header */
     :host {
       display: block;
@@ -32,7 +39,7 @@ export class EspeHeader extends LitElement {
         display: none !important;
       }
     }
-  `;
+  `];
 
   render() {
     return html`
@@ -108,10 +115,9 @@ export class EspeHeader extends LitElement {
   }
 
   _checkMobileMenuVisibility = () => {
-    if (window.innerWidth >= 768) { // md breakpoint
-      this._isMobileMenuOpen = true; // Siempre mostrar en desktop
+    if (window.innerWidth >= 768) {
+      this._isMobileMenuOpen = true;
     } else {
-      // No cambiar el estado si ya está oculto, solo al redimensionar de desktop a móvil
       if (this.shadowRoot && this.shadowRoot.getElementById('mobile-menu') && this.shadowRoot.getElementById('mobile-menu').classList.contains('flex')) {
         this._isMobileMenuOpen = false;
       }
@@ -122,3 +128,5 @@ export class EspeHeader extends LitElement {
     return this.shadowRoot?.getElementById('mobile-menu');
   }
 }
+
+customElements.define('espe-header', EspeHeader);
